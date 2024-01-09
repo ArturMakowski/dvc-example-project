@@ -1,4 +1,6 @@
 [core]
-    remote = public-s3
+    remote = drive
 ['remote "public-s3"']
     url = https://remote.dvc.org/get-started
+['remote "drive"']
+    url = gdrive://1o1mSrU52W9cOLL37gbI04VJF4Y6_d8vi
