@@ -1,12 +1,9 @@
-import json
-import math
 import os
 import pickle
 import sys
 
 import pandas as pd
 from sklearn import metrics
-from sklearn import tree
 from dvclive import Live
 from matplotlib import pyplot as plt
 
