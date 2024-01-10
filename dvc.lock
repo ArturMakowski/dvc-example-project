@@ -14,11 +14,11 @@ stages:
     params:
       params.yaml:
         prepare.seed: 20170428
-        prepare.split: 0.25
+        prepare.split: 0.3
     outs:
     - path: data/prepared
       hash: md5
-      md5: c08931d1c7459f43950b7aac03aa0ec5.dir
+      md5: 5513d7e86f06ddf1cfb7f5ecebd4c84e.dir
       size: 8437363
       nfiles: 2
   featurize:
@@ -26,7 +26,7 @@ stages:
     deps:
     - path: data/prepared
       hash: md5
-      md5: c08931d1c7459f43950b7aac03aa0ec5.dir
+      md5: 5513d7e86f06ddf1cfb7f5ecebd4c84e.dir
       size: 8437363
       nfiles: 2
     - path: src/featurization.py
@@ -36,20 +36,20 @@ stages:
     params:
       params.yaml:
         featurize.max_features: 400
-        featurize.ngrams: 3
+        featurize.ngrams: 5
     outs:
     - path: data/features
       hash: md5
-      md5: 2d9cdd40410d27a72cc3c890040c1d3c.dir
-      size: 2955862
+      md5: fd36c12a55ef8ee89cf9f2feacf5b0ac.dir
+      size: 2964512
       nfiles: 2
   train:
     cmd: python src/train.py data/features model.pkl
     deps:
     - path: data/features
       hash: md5
-      md5: 2d9cdd40410d27a72cc3c890040c1d3c.dir
-      size: 2955862
+      md5: fd36c12a55ef8ee89cf9f2feacf5b0ac.dir
+      size: 2964512
       nfiles: 2
     - path: src/train.py
       hash: md5
@@ -58,25 +58,25 @@ stages:
     params:
       params.yaml:
         train.min_split: 0.05
-        train.n_est: 150
+        train.n_est: 300
         train.seed: 20170428
     outs:
     - path: model.pkl
       hash: md5
-      md5: dc8ca758934b7dff7a30e818832f0005
-      size: 2711727
+      md5: 520a2057137b74a6cac189ae6ef34c3a
+      size: 5354473
   evaluate:
     cmd: python src/evaluate.py model.pkl data/features
     deps:
     - path: data/features
       hash: md5
-      md5: 2d9cdd40410d27a72cc3c890040c1d3c.dir
-      size: 2955862
+      md5: fd36c12a55ef8ee89cf9f2feacf5b0ac.dir
+      size: 2964512
       nfiles: 2
     - path: model.pkl
       hash: md5
-      md5: dc8ca758934b7dff7a30e818832f0005
-      size: 2711727
+      md5: 520a2057137b74a6cac189ae6ef34c3a
+      size: 5354473
     - path: src/evaluate.py
       hash: md5
       md5: 3c4a3be71734f770050efee78980698b
@@ -84,6 +84,6 @@ stages:
     outs:
     - path: eval
       hash: md5
-      md5: cc3c28670ef3cb709b79a34c6c87a6fe.dir
-      size: 1326447
+      md5: b258ae96b4a39b6b2262d426b6229d66.dir
+      size: 1333789
       nfiles: 8
