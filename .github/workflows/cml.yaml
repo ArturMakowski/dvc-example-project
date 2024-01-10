@@ -13,8 +13,8 @@ jobs:
 
       - name: Configure DVC
         run: |
-          dvc remote add -f origin s3://dvc
-          dvc remote modify origin endpointurl https://dagshub.com/ArturMakowski/dvc-example-project.s3
+          dvc remote add -f origin s3://dvc-example-project
+          dvc remote modify origin endpointurl https://dagshub.com/api/v1/repo-buckets/s3/ArturMakowski
           dvc remote modify origin --local access_key_id ${{ secrets.DAGSHUB_ACCESS_TOKEN }}
           dvc remote modify origin --local secret_access_key ${{ secrets.DAGSHUB_ACCESS_TOKEN }}
       # - name: Pull data from DVC
