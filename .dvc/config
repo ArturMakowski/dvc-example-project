@@ -1,7 +1,5 @@
 [core]
     remote = origin
-['remote "public-s3"']
-    url = https://remote.dvc.org/get-started
 ['remote "origin"']
-    url = s3://dvc
-    endpointurl = https://dagshub.com/ArturMakowski/dvc-example-remote.s3
+    url = s3://dvc-example-project
+    endpointurl = https://dagshub.com/api/v1/repo-buckets/s3/ArturMakowski
