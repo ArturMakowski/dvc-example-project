@@ -10,6 +10,16 @@ jobs:
         with:
           fetch-depth: 2
       # Needed for https://github.com/iterative/example-repos-dev/issues/225
+
+      - name: Configure DVC
+        run: |
+          dvc remote add origin s3://dvc
+          dvc remote modify origin endpointurl https://dagshub.com/ArturMakowski/dvc-example-project.s3
+          dvc remote modify origin --local access_key_id ${{ secrets.DAGSHUB_ACCESS_TOKEN }}
+          dvc remote modify origin --local secret_access_key ${{ secrets.DAGSHUB_ACCESS_TOKEN }}
+      # - name: Pull data from DVC
+      #   run: dvc pull
+
       - name: Installs JSON5
         run: npm install -g json5
       - name: Generate metrics report
